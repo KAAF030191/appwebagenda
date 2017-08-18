@@ -18,7 +18,7 @@
 				<td>{{$value->nombre}}</td>
 				<td>{{$value->apellido}}</td>
 				<td>{{$value->dni}}</td>
-				<td>{{$value->sexo}}</td>
+				<td>{{($value->sexo ? 'Masculino' : 'Femenino')}}</td>
 				<td>{{$value->fechaNacimiento}}</td>
 				<td>{{$value->correoElectronico}}</td>
 				<td>{{$value->created_at}}</td>
