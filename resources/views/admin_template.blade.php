@@ -241,9 +241,10 @@
   <div class="content-wrapper">
     
     <section class="content-header">
+      
       <h1>
-        Page Header
-        <small>Optional description</small>
+        @yield('titulo')
+       <small>@yield('descripcionTitulo')</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -254,7 +255,7 @@
     
     <section class="content">
 
-      
+      @yield('cuerpoGeneral')
 
     </section>
     
@@ -268,7 +269,7 @@
       Anything you want
     </div>
     
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
 
   
