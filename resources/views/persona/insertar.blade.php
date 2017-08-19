@@ -25,8 +25,8 @@
 		<div class="col-sm-3">
 			<label class="control-label">Sexo</label>
 			<div>
-				<label class="radio-inline"><input type="radio" name="radioSexo">Masculino</label>
-				<label class="radio-inline"><input type="radio" name="radioSexo">Femenino</label>
+				<label class="radio-inline"><input type="radio" name="radioSexo" value="M" checked="true">Masculino</label>
+				<label class="radio-inline"><input type="radio" name="radioSexo" value="F">Femenino</label>
 			</div>
 		</div>
 	</div>
@@ -46,9 +46,16 @@
 		<div class="col-sm-6">
 			<label class="control-label">.</label>
 			<div>
-				<input type="button" class="btn btn-success" value="Registrar persona" style="width: 100%;">
+				<input type="button" class="btn btn-success" value="Registrar persona" style="width: 100%;" onclick="enviarFrmInsertarPersona();">
 			</div>
 		</div>
+		{{csrf_field()}}
 	</div>
 </form>
+<script>
+	function enviarFrmInsertarPersona()
+	{
+		$('#frmInsertarPersona').submit();
+	}
+</script>
 @endsection
