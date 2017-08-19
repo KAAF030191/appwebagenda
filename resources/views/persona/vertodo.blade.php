@@ -29,7 +29,14 @@
 			</tr>
 			@endforeach
 		</tbody>
+
 	</table>
+	<div>
+		
+			<input type="button" class="btn btn-success" value="Eliminar" style="width: 30%;">
+			
+
+	</div>
 	
 
 
