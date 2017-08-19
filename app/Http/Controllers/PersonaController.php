@@ -21,7 +21,18 @@ class PersonaController extends Controller
 			$nombre=$request->input('txtNombre');
 			$apellido=$request->input('txtApellido');
 			$dni=$request->input('txtDni');
+			
 			$sexo=($request->input('radioSexo')=='M' ? true : false);
+
+			/*if($request->input('radioSexo')=='M')
+			{
+				$sexo=true;
+			}
+			else
+			{
+				$sexo=false;
+			}*/
+
 			$fechaNacimiento=$request->input('dateFechaNacimiento');
 			$correoElectronico=$request->input('txtCorreoElectronico');
 			$created_at=$updated_at=date('Y-m-d H:i:s');
@@ -36,6 +47,8 @@ class PersonaController extends Controller
 				'created_at' => $created_at,
 				'updated_at' => $updated_at
 			]);
+
+			/*insert into tpersona(nombre, apellido, dni, sexo, fechaNacimiento, correoElectronico, created_at,updated_at) values($nombre, $apellido, $dni, $sexo, $fechaNacimiento, $correoElectronico, $created_at, $updated_at)*/
 
 			return redirect('persona/vertodo');
 		}
