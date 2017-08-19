@@ -11,5 +11,10 @@ class PersonaController extends Controller
 
 		return view('persona/vertodo', ['listaPersona' => $listaPersona]);
 	}
+
+	public function actionInsertar()
+	{
+		return view('persona/insertar');
+	}
 }
 ?>
