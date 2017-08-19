@@ -26,4 +26,9 @@
 		@endforeach
 	</tbody>
 </table>
+<div class="col-sm-3">
+	<div>
+		<input type="button" class="btn btn-success" value="Eliminar" style="width: 100%;">
+	</div>
+</div>
 @endsection
