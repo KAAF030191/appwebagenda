@@ -11,5 +11,11 @@ class PersonaController extends Controller
 
 		return view ('persona/vertodo',['listaPersona' =>$listaPersona]);
 	}
+	//Insertar persona
+	public function actionInsertar()
+	{
+		//$insetarPersona =DB::table('tpersona')->get();
+		return view ('persona/insertar');
+	}
 }
 ?>
