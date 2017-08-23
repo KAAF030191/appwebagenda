@@ -40,6 +40,39 @@ class PersonaController extends Controller
 
 		return view('persona/insertar');
 	}
+
+
+
+
+	public function actionEliminar($idPersona)
+	{
+			DB::table('tpersona')->where ('idPersona','=',$idPersona)->delete();
+
+		return redirect('persona/vertodo');
+	}
+
+	public function actionEditar($idPersona=null)
+	{
+			if ($_POST) 
+			{
+				
+			}
+
+			else
+			{
+
+				$tPersona=DB::table('tpersona')->where('idPersona','=',$idPersona)->first();
+					return view('persona/editar',['tPersona'=>$tPersona]);
+			}
+
+
+		return redirect('persona/vertodo');
+	}
+
+
+
+
+
 }
 
 ?>
