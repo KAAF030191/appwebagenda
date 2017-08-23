@@ -22,13 +22,24 @@
 				<td>{{$value->fechaNacimiento}}</td>
 				<td>{{$value->correoElectronico}}</td>
 				<td>{{$value->created_at}}</td>
+				<td>
+					<input type="button" class="btn btn-sm btn-danger" value="Eliminar" onclick="eliminar({{$value->idPersona}});">
+					<input type="button" class="btn btn-sm btn-info" value="Editar" onclick="editar({{$value->idPersona}});">
+				</td>
 			</tr>
 		@endforeach
 	</tbody>
 </table>
-<div class="col-sm-3">
-	<div>
-		<input type="button" class="btn btn-success" value="Eliminar" style="width: 100%;">
-	</div>
-</div>
+<script>
+	function eliminar(idPersona) {
+		if(confirm('Realmente desea Eliminar?'))
+		{
+			window.location.href='{{url('persona/eliminar')}}/'+idPersona;
+		}
+	}
+
+	function editar (idPersona){
+		window.location.href='{{url('persona/editar')}}/'+idPersona;
+	}
+</script>
 @endsection
