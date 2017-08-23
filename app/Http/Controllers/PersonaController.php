@@ -62,5 +62,27 @@ class PersonaController extends Controller
 
 		return redirect('persona/vertodo');
 	}
+
+	public function actionEditar(Request $request, $idPersona=null)
+	{
+		if($_POST)
+		{
+			DB::table('tpersona')->where('idPersona', '=', $request->input('hdIdPersona'))->update([
+				'nombre' => $request->input('txtNombre'),
+				'apellido' => $request->input('txtApellido'),
+				'dni' => $request->input('txtDni'),
+				'sexo' => ($request->input('radioSexo')=='M' ? true : false),
+				'fechaNacimiento' => $request->input('dateFechaNacimiento'),
+				'correoElectronico' => $request->input('txtCorreoElectronico'),
+				'updated_at' => date('Y-m-d H:i:s')
+			]);
+
+			return redirect('persona/vertodo');
+		}
+
+		$tPersona=DB::table('tpersona')->where('idPersona', '=', $idPersona)->first();//select * from tpersona where idPersona='...'
+
+		return view('persona/editar', ['tPersona' => $tPersona]);
+	}
 }
 ?>

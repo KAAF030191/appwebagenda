@@ -25,6 +25,7 @@
 				<td>{{$value->created_at}}</td>
 				<td>
 					<input type="button" class="btn btn-sm btn-danger" value="Eliminar" onclick="eliminar({{$value->idPersona}});">
+					<input type="button" class="btn btn-sm btn-info" value="Editar" onclick="editar({{$value->idPersona}});">
 				</td>
 			</tr>
 		@endforeach
@@ -37,6 +38,11 @@
 		{
 			window.location.href='{{url('persona/eliminar')}}/'+idPersona;
 		}
+	}
+
+	function editar(idPersona)
+	{
+		window.location.href='{{url('persona/editar')}}/'+idPersona;
 	}
 
 	/*window.onload=function()
