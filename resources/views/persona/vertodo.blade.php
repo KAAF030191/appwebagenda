@@ -4,7 +4,6 @@
 @section('cuerpogeneral')
 <b style="color:red"><h1><center><i> vista desde el controlador </i></center></h1></b>
 
-
 	<table class="table table-striped"> 
 		<thead>
 			<th>Nombre</th>
@@ -25,19 +24,28 @@
 				<td>{{$value->fechanacimiento}}</td>
 				<td>{{$value->correoelectronico}}</td>
 				<td>{{$value->created_at}}</td>
+				<th><input type="button" class="btn btn-sm btn-danger" value="Eliminar" onclick="eliminar({{$value->idPersona}});"></th>
+				<th><input type="button" class="btn btn-sm btn-info" value="Editar" onclick="editar({{$value->idPersona}});"></th>
 
 			</tr>
 			@endforeach
 		</tbody>
-
 	</table>
-	<div>
-		
-			<input type="button" class="btn btn-success" value="Eliminar" style="width: 30%;">
-			
+<script>
+	function eliminar(idPersona)
+	{
+		if(confirm('¿Realmente desea eliminar a esta persona?'))
+		{
+			window.location.href='{{url('persona/eliminar')}}/'+idPersona;
+		}
+	}
 
-	</div>
-	
+	function editar(idPersona)
+	{
+		window.location.href='{{url('persona/editar')}}/'+idPersona;
 
 
+	}
+
+</script>
 @endsection 
