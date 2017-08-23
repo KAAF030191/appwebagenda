@@ -242,8 +242,8 @@
     
     <section class="content-header">
       <h1>
-        Page Header
-        <small>Optional description</small>
+        @yield('Titulo') 
+        <small>@yield('Descripcion') </small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -254,7 +254,7 @@
     
     <section class="content">
 
-      
+    @yield('CuerpoGeneral')      
 
     </section>
     
