@@ -9,7 +9,7 @@ class PersonaController extends Controller
 {
 	public function actionVerTodo()
 	{
-		$listaPersona=DB::table('tpersona')->get();
+		$listaPersona=DB::table('tpersona')->get();//select * from tpersona;
 
 		return view('persona/vertodo', ['listaPersona' => $listaPersona]);
 	}
@@ -54,6 +54,13 @@ class PersonaController extends Controller
 		}
 
 		return view('persona/insertar');
+	}
+
+	public function actionEliminar($idPersona)
+	{
+		DB::table('tpersona')->where('idPersona', '=', $idPersona)->delete();//delete from tpersona where idPersona='...'
+
+		return redirect('persona/vertodo');
 	}
 }
 ?>

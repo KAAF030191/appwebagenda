@@ -11,6 +11,7 @@
 		<th>Fecha de nacimiento</th>
 		<th>Correo electrónico</th>
 		<th>Fecha de registro</th>
+		<th></th>
 	</thead>
 	<tbody>
 		@foreach($listaPersona as $key => $value)
@@ -22,8 +23,28 @@
 				<td>{{$value->fechaNacimiento}}</td>
 				<td>{{$value->correoElectronico}}</td>
 				<td>{{$value->created_at}}</td>
+				<td>
+					<input type="button" class="btn btn-sm btn-danger" value="Eliminar" onclick="eliminar({{$value->idPersona}});">
+				</td>
 			</tr>
 		@endforeach
 	</tbody>
 </table>
+<script>
+	function eliminar(idPersona)
+	{
+		if(confirm('¿Realmente desea eliminar a esta persona?'))
+		{
+			window.location.href='{{url('persona/eliminar')}}/'+idPersona;
+		}
+	}
+
+	/*window.onload=function()
+	{
+		$('#btnTemporal').on('click', function()
+		{
+			alert('ok');
+		});
+	};*/
+</script>
 @endsection
