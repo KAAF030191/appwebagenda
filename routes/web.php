@@ -6,4 +6,5 @@ Route::get('persona/editar/{idPersona}', 'PersonaController@actionEditar');
 Route::post('persona/editar', 'PersonaController@actionEditar');
 
 Route::get('telefono/insertar/{idPersona}', 'TelefonoController@actionInsertar');
+Route::post('telefono/insertar', 'TelefonoController@actionInsertar');
 ?>
