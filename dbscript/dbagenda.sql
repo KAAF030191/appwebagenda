@@ -14,3 +14,16 @@ created_at datetime not null,
 updated_at datetime not null,
 primary key(idPersona)
 );
+
+tpersonatpersonattelefonocreate table ttelefono
+(
+idTelefono int auto_increment not null,
+idPersona int not null,
+operador varchar(20) not null,
+numero varchar(20) not null,
+created_at datetime not null,
+updated_at datetime not null,
+foreign key(idPersona) references tpersona(idPersona)
+on delete cascade on update cascade,
+primary key(idTelefono)
+);
