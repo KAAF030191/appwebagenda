@@ -11,4 +11,5 @@ Route::get('persona/editar/{idPersona}', 'PersonaController@actionEditar');
 Route::post('persona/editar', 'PersonaController@actionEditar');
 
 Route::get('telefono/insertar/{idPersona}','telefonoController@actionInsertar');
+Route::post('telefono/insertar','telefonoController@actionInsertar');
 ?>
