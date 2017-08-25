@@ -15,7 +15,7 @@ updated_at datetime not null,
 primary key(idPersona)
 );
 
-tpersonatpersonattelefonocreate table ttelefono
+create table ttelefono
 (
 idTelefono int auto_increment not null,
 idPersona int not null,
