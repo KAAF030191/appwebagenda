@@ -9,4 +9,6 @@ Route::match(['get','post'],'persona/insertar', 'PersonaController@actionInserta
 Route::get('persona/eliminar/{idPersona}', 'PersonaController@actionEliminar');
 Route::get('persona/editar/{idPersona}', 'PersonaController@actionEditar');
 Route::post('persona/editar', 'PersonaController@actionEditar');
+
+Route::get('telefono/insertar/{idPersona}','telefonoController@actionInsertar');
 ?>
