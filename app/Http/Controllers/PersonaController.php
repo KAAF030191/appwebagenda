@@ -19,7 +19,7 @@ class PersonaController extends Controller
 		}
 
 		dd($listaPersona);
-		//echo $listaPersona[0]->apellido;exit;
+		//echo $listaPersona[1]->correoElectronico;exit;
 
 		return view('persona/vertodo', ['listaPersona' => $listaPersona]);
 	}
