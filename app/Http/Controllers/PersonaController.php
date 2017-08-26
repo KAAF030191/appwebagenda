@@ -9,17 +9,43 @@ class PersonaController extends Controller
 {
 	public function actionVerTodo()
 	{
-		
+		//$listaPersona=DB::table('tpersona')->get();//select * from tpersona;
 		//return view('persona/vertodo', ['listaPersona' => $listaPersona]);
 
 
-		$listaPersona=DB::table('tpersona')->leftjoin('ttelefono','tPersona.idPersona','=','ttelefono.idPersona')->get();
 		//para acceder a un objeto json se accede con un ->
 		//dd($listaPersona);
 		//echo $listaPersona[0]->apellido;exit;
 		//codigo json siempre es con {}
 		//array siempre son con corchetes
+/****************************************************************************/
+		//$listaPersona=DB::table('tpersona')->leftjoin('ttelefono','tPersona.idPersona','=','ttelefono.idPersona')->get(); //select * from tpersona as tp inner join ttelefono as tt on tp.idPersona=tt.idPersona;
+		//return view('persona/vertodo', ['listaPersona' => $listaPersona]);
+/************************************************/
+	
+	/*	$listaPersona=DB::table('tpersona')->get();
+		foreach($listaPersona as $key => $value)
+		{
+			$value->childTelefono=DB::table('ttelefono')->where('idPersona', $value->idPersona)->get();
+		}
+//		dd($listaPersona);
+
+		echo $listaPersona[0]->childTelefono[1]->operador;exit;
+			//echo $listaPersona[0]->apellido;exit;
+		//return view('persona/vertodo', ['listaPersona' => $listaPersona]);
+*/
+
+$listaPersona=DB::table('tpersona')->get();
+		foreach($listaPersona as $key => $value)
+		{
+			$value->childTelefono=DB::table('ttelefono')->where('idPersona', $value->idPersona)->get();
+		}
+		//dd($listaPersona);
+		//echo $listaPersona[1]->nombre;
+		//echo $listaPersona[1]->childTelefono[0]->operador;exit;
 		return view('persona/vertodo', ['listaPersona' => $listaPersona]);
+
+
 
 	}
 
