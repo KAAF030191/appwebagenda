@@ -9,8 +9,18 @@ class PersonaController extends Controller
 {
 	public function actionVerTodo()
 	{
-		$listaPersona=DB::table('tpersona')->get();
+		
+		//return view('persona/vertodo', ['listaPersona' => $listaPersona]);
+
+
+		$listaPersona=DB::table('tpersona')->leftjoin('ttelefono','tPersona.idPersona','=','ttelefono.idPersona')->get();
+		//para acceder a un objeto json se accede con un ->
+		//dd($listaPersona);
+		//echo $listaPersona[0]->apellido;exit;
+		//codigo json siempre es con {}
+		//array siempre son con corchetes
 		return view('persona/vertodo', ['listaPersona' => $listaPersona]);
+
 	}
 
 	public function actionInsertar(Request $request)
@@ -20,7 +30,16 @@ class PersonaController extends Controller
 			$nombre=$request->input('txtNombre');
 			$apellido=$request->input('txtApellido');
 			$dni=$request->input('txtDni');
+			
 			$sexo=($request->input('radioSexo')=='M' ? true : false);
+			/*if($request->input('radioSexo')=='M')
+			{
+				$sexo=true;
+			}
+			else
+			{
+				$sexo=false;
+			}*/
 			$fechaNacimiento=$request->input('dateFechaNacimiento');
 			$correoElectronico=$request->input('txtCorreoElectronico');
 			$created_at=$updated_at=date('Y-m-d H:i:s');
@@ -34,28 +53,16 @@ class PersonaController extends Controller
 				'created_at' => $created_at,
 				'updated_at' => $updated_at
 			]);
-			
+			/*insert into tpersona(nombre, apellido, dni, sexo, fechaNacimiento, correoElectronico, created_at,updated_at) values($nombre, $apellido, $dni, $sexo, $fechaNacimiento, $correoElectronico, $created_at, $updated_at)*/
 			return redirect('persona/vertodo');
 		}
-
 		return view('persona/insertar');
 	}
-
-
-
-
 	public function actionEliminar($idPersona)
 	{
-			DB::table('tpersona')->where ('idPersona','=',$idPersona)->delete();
-
+		DB::table('tpersona')->where('idPersona', '=', $idPersona)->delete();//delete from tpersona where idPersona='...'
 		return redirect('persona/vertodo');
 	}
-
-
-
-
-
-
 	public function actionEditar(Request $request, $idPersona=null)
 	{
 		if($_POST)
@@ -74,11 +81,5 @@ class PersonaController extends Controller
 		$tPersona=DB::table('tpersona')->where('idPersona', '=', $idPersona)->first();//select * from tpersona where idPersona='...'
 		return view('persona/editar', ['tPersona' => $tPersona]);
 	}
-
-
-
-
-
 }
-
 ?>
