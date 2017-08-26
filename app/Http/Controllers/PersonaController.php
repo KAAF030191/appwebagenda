@@ -10,6 +10,23 @@ class PersonaController extends Controller
 	public function actionVerTodo()
 	{
 		$listaPersona=DB::table('tpersona')->get();//select * from tpersona;
+		//$listaPersona = DB::table('tpersona')->leftJoin('ttelefono','tpersona.idPersona', '=', 'ttelefono.idPersona')->select('tpersona.idPersona', 'tpersona.nombre','tpersona.apellido','tpersona.dni','tpersona.sexo','tpersona.fechaNacimiento','tpersona.correoElectronico','ttelefono.operador','ttelefono.numero')->get();
+
+
+		/*foreach ($listaPersona as $key => $value) 
+		{
+			$value = DB::table('ttelefono')
+		}*/
+		foreach( $listaPersona as $key => $value ) 
+		{ 
+			$value->childTelefono = DB::table('ttelefono')->where('idPersona', '=', $value->idPersona)->get(); 
+		}
+
+		//echo $listaPersona[1]->apellido;
+		//echo  $listaPersona[1]->childTelefono[0]->operador;
+		
+
+		//dd($listaPersona); exit;
 
 		return view('persona/vertodo', ['listaPersona' => $listaPersona]);
 	}

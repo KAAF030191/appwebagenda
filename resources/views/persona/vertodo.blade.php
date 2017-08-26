@@ -10,6 +10,9 @@
 		<th>Sexo</th>
 		<th>Fecha de nacimiento</th>
 		<th>Correo electrónico</th>
+		<!--<th>Operador</th>
+		<th>Numero</th>-->
+		<th>Telefonos</th>
 		<th>Fecha de registro</th>
 		<th></th>
 	</thead>
@@ -22,6 +25,13 @@
 				<td>{{($value->sexo ? 'Masculino' : 'Femenino')}}</td>
 				<td>{{$value->fechaNacimiento}}</td>
 				<td>{{$value->correoElectronico}}</td>
+				<td>
+
+				@foreach($value->childTelefono as $index => $item)
+					<b>{{$item->operador}}: </b> {{$item->numero}}
+					<br>
+				@endforeach
+				</td>
 				<td>{{$value->created_at}}</td>
 				<td>
 					<input type="button" class="btn btn-sm btn-danger" value="Eliminar" onclick="eliminar({{$value->idPersona}});">
