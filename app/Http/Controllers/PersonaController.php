@@ -7,8 +7,9 @@ class PersonaController extends Controller
 {
 	public function actionVerTodo()
 	{
-		//$listaPersona=DB::table('tpersona')->get();
-		$listaPersona=DB::table('tPersona')->join('ttelefono','tPersona.idPersona','=','ttelefono.idPersona')->get(); 
+		//$listaPersona=DB::table('tpersona')->get();//select * from tpersona
+		//$listaPersona=DB::table('tPersona')->join('ttelefono','tPersona.idPersona','=','ttelefono.idPersona')->get(); // innerjoin
+		$listaPersona=DB::table('tpersona')->leftjoin('ttelefono','tPersona.idPersona','=','ttelefono.idPersona')->get(); //leftjoin
 		//dd($listaPersona);exit;
 		return view ('persona/vertodo',['listaPersona' =>$listaPersona]);
 	}
