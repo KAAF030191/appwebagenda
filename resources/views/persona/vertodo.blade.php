@@ -10,6 +10,7 @@
 		<th>Sexo</th>
 		<th>Fecha de nacimiento</th>
 		<th>Correo electrónico</th>
+		<th>Teléfono</th>
 		<th>Fecha de registro</th>
 		<th></th>
 	</thead>
@@ -22,10 +23,17 @@
 				<td>{{($value->sexo ? 'Masculino' : 'Femenino')}}</td>
 				<td>{{$value->fechaNacimiento}}</td>
 				<td>{{$value->correoElectronico}}</td>
+				<td>
+					@foreach($value->childTelefono as $index => $item)
+						<b>{{$item->operador}}: </b> {{$item->numero}}
+						<br>
+					@endforeach
+				</td>
 				<td>{{$value->created_at}}</td>
 				<td>
 					<input type="button" class="btn btn-sm btn-danger" value="Eliminar" onclick="eliminar({{$value->idPersona}});">
 					<input type="button" class="btn btn-sm btn-info" value="Editar" onclick="editar({{$value->idPersona}});">
+					<input type="button" class="btn btn-sm btn-success" value="Registrar teléfono" onclick="window.location.href='{{url('telefono/insertar')}}/{{$value->idPersona}}';">
 				</td>
 			</tr>
 		@endforeach

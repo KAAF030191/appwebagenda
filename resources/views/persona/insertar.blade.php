@@ -1,54 +1,61 @@
 @extends('admin_template')
 @section('titulo', 'Persona')
-@section('descripcionTitulo', 'Listado de personas')
+@section('descripcionTitulo', 'Registro de persona')
 @section('cuerpoGeneral')
-<table class="table table-striped">
-	<thead>
-		<th>Nombre</th>
-		<th>Apellido</th>
-		<th>DNI</th>
-		<th>Sexo</th>
-		<th>Fecha de nacimiento</th>
-		<th>Correo electrónico</th>
-		<th>Fecha de registro</th>
-		<th></th>
-	</thead>
-	<tbody>
-		@foreach($listaPersona as $key => $value)
-			<tr>
-				<td>{{$value->nombre}}</td>
-				<td>{{$value->apellido}}</td>
-				<td>{{$value->dni}}</td>
-				<td>{{($value->sexo ? 'Masculino' : 'Femenino')}}</td>
-				<td>{{$value->fechaNacimiento}}</td>
-				<td>{{$value->correoElectronico}}</td>
-				<td>{{$value->created_at}}</td>
-				<td>
-					<input type="button" class="btn btn-sm btn-danger" value="Eliminar" onclick="eliminar({{$value->idPersona}});">
-					<input type="button" class="btn btn-sm btn-info" value="Editar" onclick="editar({{$value->idPersona}});">
-				</td>
-			</tr>
-		@endforeach
-	</tbody>
-</table>
+<form id="frmInsertarPersona" action="{{url('persona/insertar')}}" method="post">
+	<div class="row">
+		<div class="col-sm-3">
+			<label for="txtNombre" class="control-label">Nombre</label>
+			<div>
+				<input type="text" id="txtNombre" name="txtNombre" class="form-control">
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<label for="txtApellido" class="control-label">Apellido</label>
+			<div>
+				<input type="text" id="txtApellido" name="txtApellido" class="form-control">
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<label for="txtDni" class="control-label">DNI</label>
+			<div>
+				<input type="text" id="txtDni" name="txtDni" class="form-control">
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<label class="control-label">Sexo</label>
+			<div>
+				<label class="radio-inline"><input type="radio" name="radioSexo" value="M" checked="true">Masculino</label>
+				<label class="radio-inline"><input type="radio" name="radioSexo" value="F">Femenino</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<label for="dateFechaNacimiento" class="control-label">Fecha de nacimiento</label>
+			<div>
+				<input type="date" id="dateFechaNacimiento" name="dateFechaNacimiento" class="form-control">
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<label for="txtCorreoElectronico" class="control-label">Correo electrónico</label>
+			<div>
+				<input type="text" id="txtCorreoElectronico" name="txtCorreoElectronico" class="form-control">
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<label class="control-label">.</label>
+			<div>
+				<input type="button" class="btn btn-success" value="Registrar persona" style="width: 100%;" onclick="enviarFrmInsertarPersona();">
+			</div>
+		</div>
+		{{csrf_field()}}
+	</div>
+</form>
 <script>
-	function eliminar(idPersona)
+	function enviarFrmInsertarPersona()
 	{
-		if(confirm('¿Realmente desea eliminar a esta persona?'))
-		{
-			window.location.href='{{url('persona/eliminar')}}/'+idPersona;
-		}
+		$('#frmInsertarPersona').submit();
 	}
-	function editar(idPersona)
-	{
-		window.location.href='{{url('persona/editar')}}/'+idPersona;
-	}
-	/*window.onload=function()
-	{
-		$('#btnTemporal').on('click', function()
-		{
-			alert('ok');
-		});
-	};*/
 </script>
 @endsection
