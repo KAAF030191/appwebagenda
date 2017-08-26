@@ -25,7 +25,7 @@
 				<td>{{$value->correoElectronico}}</td>
 				<td>
 					@foreach($value->childTelefono as $index => $item)
-						<b>{{$item->operador}}: </b> {{$item->numero}}
+						<b>{{$item->operador}}(<a href="#">Editar</a> | <a href="#">Eliminar</a>): </b> {{$item->numero}}
 						<br>
 					@endforeach
 				</td>
