@@ -10,6 +10,8 @@
 		<th>Sexo</th>
 		<th>Fecha de Nacimiento</th>
 		<th>Correo Electronico</th>
+		<th>Operador</th>
+		<th>Numero</th>
 		<th>Fecha de Registro</th>
 	</thead>
 	<tbody>
@@ -21,6 +23,8 @@
 				<td>{{($value->sexo ? 'Masculino':'Femenino')}}</td>
 				<td>{{$value->fechaNacimiento}}</td>
 				<td>{{$value->correoElectronico}}</td>
+				<td>{{$value->operador}}</td>
+				<td>{{$value->numero}}</td>
 				<td>{{$value->created_at}}</td>
 				<td>
 					<input type="button" class="btn btn-sm btn-danger" value="Eliminar" onclick="eliminar({{$value->idPersona}});">
