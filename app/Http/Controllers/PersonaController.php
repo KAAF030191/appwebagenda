@@ -18,8 +18,9 @@ class PersonaController extends Controller
 			$value->childTelefono=DB::table('ttelefono')->where('idPersona', $value->idPersona)->get();
 		}
 
-		dd($listaPersona);
-		//echo $listaPersona[1]->correoElectronico;exit;
+		//dd($listaPersona);
+		//echo $listaPersona[1]->nombre;
+		//echo $listaPersona[1]->childTelefono[0]->operador;exit;
 
 		return view('persona/vertodo', ['listaPersona' => $listaPersona]);
 	}
