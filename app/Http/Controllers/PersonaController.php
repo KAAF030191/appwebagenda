@@ -11,6 +11,14 @@ class PersonaController extends Controller
     public function actionVerTodo()
     {
         $listapersona=DB::table('tpersona')->get();
+        foreach($listaPersona as $key => $value)
+		{
+			$value->childTelefono=DB::table('ttelefono')->where('idpersona', $value->idpersona)->get();
+		}
+		//dd($listaPersona);
+		//echo $listaPersona[1]->nombre;
+		//echo $listaPersona[1]->childTelefono[0]->operador;exit;
+		
         return view('persona/vertodo',['listapersona'=>$listapersona]);
     }
     public function actionInsertar(Request $request)
