@@ -24,7 +24,7 @@
 				<td>{{$value->fechaNacimiento}}</td>
 				<td>{{$value->correoElectronico}}</td>
 				<td>
-					@foreach($value->childTelefono as $index => $item)
+					@foreach($value->ttelefono as $index => $item)
 						<b>{{$item->operador}}(<a href="#">Editar</a> | <a href="#">Eliminar</a>): </b> {{$item->numero}}
 						<br>
 					@endforeach

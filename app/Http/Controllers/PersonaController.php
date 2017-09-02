@@ -12,12 +12,15 @@ class PersonaController extends Controller
 	{
 		//$listaPersona=DB::table('tpersona')->get();//select * from tpersona;
 		//$listaPersona=DB::table('tpersona')->leftJoin('ttelefono', 'tpersona.idPersona', '=', 'ttelefono.idPersona')->get();//select * from tpersona as tp inner join ttelefono as tt on tp.idPersona=tt.idPersona;
-		$listaPersona=DB::table('tpersona')->get();
+		
+		/*$listaPersona=DB::table('tpersona')->get();
 
 		foreach($listaPersona as $key => $value)
 		{
 			$value->childTelefono=DB::table('ttelefono')->where('idPersona', $value->idPersona)->get();
-		}
+		}*/
+
+		$listaPersona=TPersona::with(['ttelefono'])->get();
 
 		//dd($listaPersona);
 		//echo $listaPersona[1]->nombre;
@@ -88,7 +91,9 @@ class PersonaController extends Controller
 
 	public function actionEliminar($idPersona)
 	{
-		DB::table('tpersona')->where('idPersona', '=', $idPersona)->delete();//delete from tpersona where idPersona='...'
+		//DB::table('tpersona')->where('idPersona', '=', $idPersona)->delete();//delete from tpersona where idPersona='...'
+
+		TPersona::find($idPersona)->delete();
 
 		return redirect('persona/vertodo');
 	}
@@ -97,7 +102,7 @@ class PersonaController extends Controller
 	{
 		if($_POST)
 		{
-			DB::table('tpersona')->where('idPersona', '=', $request->input('hdIdPersona'))->update([
+			/*DB::table('tpersona')->where('idPersona', '=', $request->input('hdIdPersona'))->update([
 				'nombre' => $request->input('txtNombre'),
 				'apellido' => $request->input('txtApellido'),
 				'dni' => $request->input('txtDni'),
@@ -105,12 +110,24 @@ class PersonaController extends Controller
 				'fechaNacimiento' => $request->input('dateFechaNacimiento'),
 				'correoElectronico' => $request->input('txtCorreoElectronico'),
 				'updated_at' => date('Y-m-d H:i:s')
-			]);
+			]);*/
+
+			$tPersona=TPersona::find($request->input('hdIdPersona'));
+
+			$tPersona->nombre=$request->input('txtNombre');
+			$tPersona->apellido=$request->input('txtApellido');
+			$tPersona->dni=$request->input('txtDni');
+			$tPersona->sexo=($request->input('radioSexo')=='M' ? true : false);
+			$tPersona->fechaNacimiento=$request->input('dateFechaNacimiento');
+			$tPersona->correoElectronico=$request->input('txtCorreoElectronico');
+
+			$tPersona->save();
 
 			return redirect('persona/vertodo');
 		}
 
-		$tPersona=DB::table('tpersona')->where('idPersona', '=', $idPersona)->first();//select * from tpersona where idPersona='...'
+		//$tPersona=DB::table('tpersona')->where('idPersona', '=', $idPersona)->first();//select * from tpersona where idPersona='...'
+		$tPersona=TPersona::find($idPersona);
 
 		return view('persona/editar', ['tPersona' => $tPersona]);
 	}
