@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
+use App\Model\TPersona;
 
 class PersonaController extends Controller
 {
@@ -55,7 +56,7 @@ class PersonaController extends Controller
 				return redirect('persona/vertodo');
 			}
 
-			DB::table('tpersona')->insert([
+			/*DB::table('tpersona')->insert([
 				'nombre' => $nombre,
 				'apellido' => $apellido,
 				'dni' => $dni,
@@ -64,7 +65,18 @@ class PersonaController extends Controller
 				'correoElectronico' => $correoElectronico,
 				'created_at' => $created_at,
 				'updated_at' => $updated_at
-			]);
+			]);*/
+
+			$tPersona=new TPersona();
+
+			$tPersona->nombre=$nombre;
+			$tPersona->apellido=$apellido;
+			$tPersona->dni=$dni;
+			$tPersona->sexo=$sexo;
+			$tPersona->fechaNacimiento=$fechaNacimiento;
+			$tPersona->correoElectronico=$correoElectronico;
+
+			$tPersona->save();
 
 			/*insert into tpersona(nombre, apellido, dni, sexo, fechaNacimiento, correoElectronico, created_at,updated_at) values($nombre, $apellido, $dni, $sexo, $fechaNacimiento, $correoElectronico, $created_at, $updated_at)*/
 
