@@ -48,6 +48,13 @@ class PersonaController extends Controller
 			$correoElectronico=$request->input('txtCorreoElectronico');
 			$created_at=$updated_at=date('Y-m-d H:i:s');
 
+			$temp=DB::table('tpersona')->where('dni', $dni)->first();
+
+			if($temp!=null)
+			{
+				return redirect('persona/vertodo');
+			}
+
 			DB::table('tpersona')->insert([
 				'nombre' => $nombre,
 				'apellido' => $apellido,
